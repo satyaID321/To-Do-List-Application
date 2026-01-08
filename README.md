@@ -15,8 +15,8 @@ Vite provides fast development with Hot Module Replacement (HMR).
 
 ### Installation
 
-1. Clone the repository:
 ```bash
+1. Clone the repository:
 git clone <repository-url>
 2. Go to the project folder:
 cd <project-folder>
