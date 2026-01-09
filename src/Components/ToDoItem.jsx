@@ -4,30 +4,26 @@ function ToDoItem({ todo, deleteTodo, toggleTodo, editTodo }) {
   const [editBtn, setEditBtn] = useState(false);
   const [text, setText] = useState(todo.text);
 
-  // for saving edited todo
   const saveEdit = () => {
     editTodo(todo.id, text);
     setEditBtn(false);
   };
 
   return (
-    <div className=" flex justify-between items-center bg-gray-200 rounded ml-14 mr-14 p-4">
-      {editBtn ? (
-        <>
-          <input className="border p-1 w-full mr-2" value={text} onChange={(e) => setText(e.target.value)}/>
-          <button onClick={saveEdit} className="bg-green-500 text-white px-2 rounded" > Save</button>
-        </>
+    <div className="bg-gray-100 rounded-lg p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3
+            overflow-hidden"> {editBtn ? (
+        <div className="flex flex-col sm:flex-row w-full gap-2 min-w-0">
+          <input className="border rounded p-2 w-full" value={text} onChange={(e) => setText(e.target.value)}/>
+          <button  onClick={saveEdit} className="bg-green-700 text-white px-4 py-2 rounded sm:w-auto w-full" > Save </button>
+        </div>
       ) : (
-        
         <>
-        {/* <input className="w-6 h-11" type="checkbox" /> */}
-          <span onClick={() => toggleTodo(todo.id)} className={`cursor-pointer ${todo.completed ? "line-through text-gray-500" : ""}`}>
-            {todo.text}</span>
-
-          <div className="flex gap-2">
-            <button onClick={() => setEditBtn(true)} className="bg-yellow-400 px-2 rounded">Edit </button>
-            <button
-              onClick={() => deleteTodo(todo.id)}className="bg-red-500 text-white px-2 rounded"> Delete </button>
+          <span onClick={() => toggleTodo(todo.id)} className={`cursor-pointer flex-1 min-w-0 break-all text-base
+              ${todo.completed ? "line-through text-gray-500" : ""}`}> {todo.text}
+          </span>
+          <div className="flex gap-2 sm:shrink-0">
+            <button  onClick={() => setEditBtn(true)} className="bg-amber-500 px-3 py-1 rounded"> Edit </button>
+            <button  onClick={() => deleteTodo(todo.id)} className="bg-orange-700 text-white px-3 py-1 rounded" > Delete </button>
           </div>
         </>
       )}

@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <h1 className=" bg-black text-white text-2xl font-bold text-center m-4 rounded-md p-3" > Add Your To-Do List</h1>
+    <h1 className=" bg-black mt-5 text-white font-semibold text-center py-4 text-xl w-full rounded-md" > Add Your To-Do List </h1>
   );
 }
 

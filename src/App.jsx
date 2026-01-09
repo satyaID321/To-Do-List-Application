@@ -1,8 +1,7 @@
-import './App.css'
-import Header from './Components/Header'
-import ToDoList from './Components/ToDoList'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import "./App.css";
+import Header from "./Components/Header";
+import ToDoList from "./Components/ToDoList";
+import { useState, useEffect } from "react";
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -10,46 +9,35 @@ function App() {
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
 
-  // On refreshing data should remain
+  // keep data on refresh
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  // for adding new todo
   const addTodo = (text) => {
     setTodos([...todos, { id: Date.now(), text, completed: false }]);
   };
 
-  // todo delete the todo
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const toggleTodo = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+    setTodos( todos.map((todo) => todo.id === id ? { ...todo, completed: !todo.completed } : todo ));
   };
 
-  //for edit the todo
   const editTodo = (id, newText) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, text: newText } : todo
-      )
-    );
+    setTodos( todos.map((todo) => todo.id === id ? { ...todo, text: newText } : todo));
   };
 
   return (
-    <>
-      <div className='w-400 justify-self-center'>
+    <div className="min-h-screen bg-pink-100 flex justify-center">
+      <div className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl">
         <Header />
-        <ToDoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} editTodo={editTodo}/>
+        <ToDoList  todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} editTodo={editTodo}/>
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

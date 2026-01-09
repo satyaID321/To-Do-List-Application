@@ -3,8 +3,7 @@ import ToDoItem from "./ToDoItem";
 
 function ToDoList({ todos, addTodo, deleteTodo, toggleTodo, editTodo }) {
   const [inputData, setInputData] = useState("");
-  
-  // for adding new todo
+
   const handleAdd = () => {
     if (inputData.trim() === "") return;
     addTodo(inputData);
@@ -12,14 +11,17 @@ function ToDoList({ todos, addTodo, deleteTodo, toggleTodo, editTodo }) {
   };
 
   return (
-    <div>
-      <div className="flex gap-2 mb-4 mr-10 ml-10">
-        <input type="text" className="border p-2 w-full rounded" placeholder="Enter task..."  
-        value={inputData} onChange={(e) => setInputData(e.target.value)}/>
-        <button onClick={handleAdd} className="bg-blue-900 text-white px-4 rounded">Add</button>
+    <div className="p-4">
+      <div className="bg-white rounded-lg p-3 mb-4">
+        <input  type="text" placeholder="Enter task..." className="border rounded w-full p-3 mb-3
+         focus:ring-blue-400" value={inputData} onChange={(e) => setInputData(e.target.value)}/>
+        <button onClick={handleAdd} className="bg-blue-800 text-white w-full py-3 rounded font-medium "> Add Task </button>
       </div>
-      {todos.map((todo) => (<ToDoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} editTodo={editTodo}/>
-      ))}
+
+      <div className="space-y-3"> {todos.map((todo) => (
+          <ToDoItem key={todo.id} todo={todo} deleteTodo={deleteTodo} toggleTodo={toggleTodo} editTodo={editTodo}/>
+        ))}
+      </div>
     </div>
   );
 }
